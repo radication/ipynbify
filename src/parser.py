@@ -6,7 +6,9 @@ class Ipynb:
     
     def __init__(self, path_to_file: str | Path):
         self.path = Path(path_to_file)
-        self.data = None
+        self.data: dict | None = None
+        self.data_cells: list[dict] | None = None
+        self.language: str | None = None
 
     def open(self) -> dict:
         """Open the file and parse JSON.
@@ -14,6 +16,8 @@ class Ipynb:
         Returns:
             dict: Parsed notebook content.
         """
-        with open(self.path, "r", encoding="utf-8") as f:
-            self.data = json.load(f)
+        
+        if self.data is None:
+            with open(self.path, "r", encoding="utf-8") as f:
+                self.data = json.load(f)
         return self.data
