@@ -22,5 +22,5 @@ for cell in file.get_all_cells():
     for row in cell_content:
         global_content += row
 
-with open(f"{file_path}.md", "w", encoding="utf-8") as f:
+with open(f"{file_path.replace('.ipynb', '.md')}", "w", encoding="utf-8") as f:
     f.write(global_content)
